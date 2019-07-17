@@ -1,16 +1,23 @@
-.form{
+.form {
     display: flex;
     flex-direction: column;
     width: 40%;
-    height:300px;
+    height: 300px;
     border: 1px solid gray;
     border-radius: 5px;
     background: white;
     justify-content: space-evenly;
     padding: 2%;
     margin: 0 auto;
+    p{
+        background: #ED7C81;
+        color: #484848;
+        height: 45px;
+        padding: 7px;
+    }
 }
-.form_input{
+
+.form_input {
     outline: none;
     color: #484848;
     border: 1px solid #484848;
@@ -21,21 +28,30 @@
     background-image: url('https://a0.muscache.com/airbnb/static/signinup/text-field-icons-72d5ec8….png');
     padding: 10px 35px 10px 10px;
 }
-.btn{
+
+.btn {
     outline: none;
     background-color: #ED7C81;
     color: white;
     width: 40%;
     height: 40px;
-    border : 1px solid #ED7C81;
+    border: 1px solid #ED7C81;
     border-radius: 3px;
     margin: 0 auto;
     cursor: pointer;
     font-size: 15px;
 }
+.btn:disabled{
+   opacity: 0.4;
+}
+.form_error{
+    color: #ED7C81;
+    text-align: left;
+    font-size: 10px;
+}
+
 @media screen and (max-width: 500px) {
-    .form{
+    .form {
         width: 90%;
     }
-  }
-  
+}

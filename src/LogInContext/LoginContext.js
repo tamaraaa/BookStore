@@ -2,6 +2,7 @@ import React, { createContext,useReducer ,useMemo} from 'react';
 import reducer from './LoginReducer'
 
  const initialState = {
+    hasError : false,
     activUser : null,
     isLogedIn : false,
     users : [

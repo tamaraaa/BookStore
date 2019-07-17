@@ -1,19 +1,18 @@
 import React,{useContext} from 'react';
 import './App.scss';
 import Login from './LogIn/Login';
-import Logo from '../shared/Logo';
 import {LoginContext} from '../../LogInContext/LoginContext';
+import Home from './Home/Home';
 
 
-const BookStore = () => {
+const App = () => {
   const context = useContext(LoginContext);
   const [state] = context;
-  const page = state.isLogedIn ? null : <Login />;
+  const page = state.isLogedIn ? <Home /> : <Login />;
   return (
     <div className="App">
-      <Logo />
       {page}
     </div>
   );
 }
-export default BookStore;
+export default App;

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BookStore from './components/BookStore/BookStore';
+import App from './components/BookStore/App';
 import {LoginProvider} from './LogInContext/LoginContext';
 
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<LoginProvider><BookStore /></LoginProvider>, document.getElementById('root'));
+ReactDOM.render(<LoginProvider><App /></LoginProvider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
