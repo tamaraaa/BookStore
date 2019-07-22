@@ -6,12 +6,17 @@ import { BooksContext } from "../../../../Context/BooksContext/BooksContext";
 const Catalog = () => {
   const context = useContext(BooksContext);
   const [state, dispatch] = context;
-  console.log(state.likedBooks);
+  const [list, setList] = useState("all");
+
+  const toogleList = list => {
+    setList(list);
+  };
+  const bookList = list === "all" ? state.bookList : state.likedBooks;
 
   return (
     <React.Fragment>
-      <BooksFilter />
-      <BookList list={state.bookList} />
+      <BooksFilter toogleList={toogleList} />
+      <BookList list={bookList} />
     </React.Fragment>
   );
 };

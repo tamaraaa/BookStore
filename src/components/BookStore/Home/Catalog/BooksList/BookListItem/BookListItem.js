@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -15,6 +15,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import TextField from "@material-ui/core/TextField";
 import CardHeader from "@material-ui/core/CardHeader";
 import "./book_list_item.scss";
+import { COMMENT } from "../../../../../../Context/BooksContext/BooksReducer";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -55,11 +56,20 @@ const RecipeReviewCard = props => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [expandedDescription, setExpandedDescription] = React.useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-  function handleExpandClick() {
+  const handleSubmit = (id, event, text) => {
+    event.preventDefault();
+    props.dispatch({ type: COMMENT, payload: { id, text } });
+    setInputValue("");
+  };
+  const handleInputChange = event => {
+    setInputValue(event.target.value);
+  };
+  const handleExpandClick = () => {
     setExpanded(!expanded);
     setExpandedDescription(false);
-  }
+  };
   const handleExpandDescription = () => {
     setExpandedDescription(!expandedDescription);
     setExpanded(false);
@@ -98,15 +108,19 @@ const RecipeReviewCard = props => {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <TextField
-          id="filled-textarea"
-          label="Whrite a comment here"
-          placeholder="Whrite a comment here"
-          className={classes.textField}
-          margin="normal"
-          variant="filled"
-          width="auto"
-        />
+        <form onSubmit={event => handleSubmit(props.id, event, inputValue)}>
+          <TextField
+            onChange={handleInputChange}
+            id="filled-textarea"
+            label="Whrite a comment here"
+            placeholder="Whrite a comment here"
+            className={classes.textField}
+            margin="normal"
+            variant="filled"
+            width="auto"
+            value={inputValue}
+          />
+        </form>
       </Collapse>
       <Collapse in={expandedDescription} timeout="auto" unmountOnExit>
         <Typography>{props.data.description}</Typography>

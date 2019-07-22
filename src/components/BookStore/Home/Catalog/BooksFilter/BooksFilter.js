@@ -3,7 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-const BooksFilter = () => {
+const BooksFilter = props => {
   const [value, setValue] = useState(0);
   function handleChange(event, newValue) {
     setValue(newValue);
@@ -16,8 +16,8 @@ const BooksFilter = () => {
         textColor="primary"
         onChange={handleChange}
       >
-        <Tab label="All Books" />
-        <Tab label="Popular" disabled />
+        <Tab label="All Books" onClick={() => props.toogleList("all")} />
+        <Tab label="Popular" onClick={() => props.toogleList("popular")} />
       </Tabs>
     </Paper>
   );

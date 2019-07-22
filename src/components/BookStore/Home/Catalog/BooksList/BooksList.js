@@ -3,6 +3,7 @@ import BookListItem from "./BookListItem/BookListItem";
 import "./book_list.scss";
 import { LIKE } from "../../../../../Context/BooksContext/BooksReducer";
 import { BooksContext } from "../../../../../Context/BooksContext/BooksContext";
+var uniqid = require("uniqid");
 
 const BooksList = props => {
   const context = useContext(BooksContext);
@@ -10,15 +11,17 @@ const BooksList = props => {
   const handelLike = id => {
     dispatch({ type: LIKE, payload: id });
   };
-  console.log(state);
+
   return (
     <ul className="bookList">
-      {props.list.map((book, index) => {
+      {props.list.map(book => {
         return (
           <BookListItem
+            dispatch={dispatch}
             title={book.title}
             data={book}
-            key={index + book.title}
+            id={book.id}
+            key={uniqid()}
             handelLike={() => handelLike(book.id)}
           />
         );
