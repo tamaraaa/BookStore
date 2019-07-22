@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { LoginContext } from "../../../../LogInContext/LoginContext";
-import { LOGIN } from "../../../../LogInContext/LoginReducer";
+import { LoginContext } from "../../../../Context/LogInContext/LoginContext";
+import { LOGIN } from "../../../../Context/LogInContext/LoginReducer";
 import { emailIsValid } from "../../../../utils";
 import { passwordIsValid } from "../../../../utils";
+import { isEmpty } from "../../../../utils";
 
 import "./form.scss";
 
@@ -35,7 +36,7 @@ const Form = () => {
   };
   const loginHandler = event => {
     event.preventDefault();
-    if (!handleValidation(email, password)) {
+    if (isEmpty(handleValidation(email, password))) {
       dispatch({ type: LOGIN, payload: { email, password } });
     } else {
       setEmailError(handleValidation(email, password).email);

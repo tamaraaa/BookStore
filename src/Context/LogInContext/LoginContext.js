@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useMemo } from "react";
 import reducer from "./LoginReducer";
 
-const initialState = {
+const userState = {
   hasError: false,
   activUser: null,
   isLogedIn: false,
@@ -24,7 +24,7 @@ const initialState = {
 const LoginContext = createContext();
 
 const LoginProvider = props => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, userState);
   const value = useMemo(() => [state, dispatch], [state]);
   return (
     <LoginContext.Provider value={value}>
