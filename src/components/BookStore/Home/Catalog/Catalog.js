@@ -5,14 +5,18 @@ import { BooksContext } from "../../../../Context/BooksContext/BooksContext";
 
 const Catalog = () => {
   const context = useContext(BooksContext);
-  const [state, dispatch] = context;
+  const [state] = context;
   const [list, setList] = useState("all");
 
   const toogleList = list => {
     setList(list);
   };
-  const bookList = list === "all" ? state.bookList : state.likedBooks;
-
+  const allBooks = Object.keys(state.bookList).map(i => state.bookList[i]);
+  const likedBooks = allBooks.filter(book => {
+    return book.liked;
+  });
+  console.log(likedBooks);
+  const bookList = list === "all" ? allBooks : likedBooks;
   return (
     <React.Fragment>
       <BooksFilter toogleList={toogleList} />

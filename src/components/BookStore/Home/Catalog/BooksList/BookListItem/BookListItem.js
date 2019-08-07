@@ -48,7 +48,8 @@ const useStyles = makeStyles(theme => ({
     height: "auto"
   },
   red: {
-    backgroundColor: "#ed7c81"
+    backgroundColor: "#ed7c81",
+    fontSize: "10px"
   }
 }));
 
@@ -66,19 +67,20 @@ const RecipeReviewCard = props => {
   const handleInputChange = event => {
     setInputValue(event.target.value);
   };
-  const handleExpandClick = () => {
+  const handleExpandClick = event => {
+    console.log(event.target);
     setExpanded(!expanded);
     setExpandedDescription(false);
+    console.log(event.keyCode);
   };
   const handleExpandDescription = () => {
     setExpandedDescription(!expandedDescription);
     setExpanded(false);
   };
+  console.log(props.data.comments);
   return (
     <Card className={classes.card}>
-      <CardHeader>
-        <Typography paragraph>jfnweaiojm</Typography>
-      </CardHeader>
+      <CardHeader title={props.data.title} />
       <CardMedia
         className={classes.media}
         image={props.data.img}
@@ -91,12 +93,13 @@ const RecipeReviewCard = props => {
           onClick={props.handelLike}
         >
           <FavoriteIcon />
+          {props.data.liked !== 0 && props.data.liked}
         </IconButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
           })}
-          onClick={handleExpandClick}
+          onClick={event => handleExpandClick(event)}
           aria-expanded={expanded}
           aria-label="Show more"
         >

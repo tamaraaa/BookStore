@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useMemo } from "react";
 import reducer from "./LoginReducer";
 
-const userState = {
+export const userState = {
   hasError: false,
   activUser: null,
   isLogedIn: false,
@@ -10,13 +10,13 @@ const userState = {
       name: "Tamara",
       email: "tamara.bla@gmail.com",
       password: "blabla1",
-      id: Math.random()
+      id: 1
     },
     {
       name: "Ana",
       email: "ana.bla@gmail.com",
       password: "myPassword1",
-      id: Math.random()
+      id: 2
     }
   ]
 };

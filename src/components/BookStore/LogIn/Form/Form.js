@@ -23,7 +23,6 @@ const Form = () => {
     setPasswordError("");
     setPassword(event.target.value);
   };
-
   const handleValidation = (email, password) => {
     let errors = {};
     if (!emailIsValid(email)) {

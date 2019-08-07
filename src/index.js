@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/BookStore/App";
+import App from "./App";
 import { LoginProvider } from "./Context/LogInContext/LoginContext";
 
 import * as serviceWorker from "./serviceWorker";

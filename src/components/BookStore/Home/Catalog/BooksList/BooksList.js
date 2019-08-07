@@ -21,7 +21,7 @@ const BooksList = props => {
             title={book.title}
             data={book}
             id={book.id}
-            key={uniqid()}
+            key={uniqid() + book.title}
             handelLike={() => handelLike(book.id)}
           />
         );

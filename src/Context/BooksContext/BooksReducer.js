@@ -5,33 +5,23 @@ const booksReducer = (state, action) => {
   let { type, payload } = action;
   switch (type) {
     case LIKE:
-      const likedBook = state.bookList.filter(book => {
-        const chekLikedList = state.likedBooks.filter(key => {
-          return key.id === book.id;
-        });
-        if (!chekLikedList.length) {
-          return book.id === payload;
-        } else {
-          return;
-        }
-      });
-      likedBook[0].liked = true;
+      const likedBook = { ...state.bookList[payload] };
+      likedBook.liked++;
+      let bookList = { ...state.bookList };
+      bookList[payload] = likedBook;
       return {
         ...state,
-        likedBooks: state.likedBooks.concat(likedBook)
+        bookList
       };
-    case COMMENT: {
-      const commentedBook = [...state.bookList];
-      commentedBook.map(book => {
-        if (book.id === payload.id) {
-          return (book.comments = book.comments.concat(payload.text));
-        }
-      });
+    case COMMENT:
+      const commentedBook = { ...state.bookList[payload.id] };
+      commentedBook.comments = [payload.text];
+      let bookListCommented = { ...state.bookList };
+      bookListCommented[payload.id] = { ...commentedBook };
       return {
         ...state,
-        bookList: commentedBook
+        bookList: bookListCommented
       };
-    }
     default:
       return state;
   }
